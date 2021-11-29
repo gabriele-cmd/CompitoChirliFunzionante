@@ -37,16 +37,16 @@ public class Server {
             outVersoClient.writeBytes("Inserisci la nota da memorizzare o digita LISTA per visualizzare le note salvate. Digita ESCI per uscire e RIMUOVI + nota per rimuovere una nota salvata.\n");
             stringaInDalClient = inDalClient.readLine(); //LEGGO la stringa inviata dal Client
 
-            ArrayList<String> copiaNote = new ArrayList<>();
+            /*ArrayList<String> copiaNote = new ArrayList<>();
             for(String x: note){
                 copiaNote.add(x);
-            }
+            }*/
 
             String[] controllo = stringaInDalClient.split(" ", 2);
             switch(controllo[0]){
                 case "LISTA":
                     outVersoClient.writeBytes("Note salvate: ");
-                    for(String x: copiaNote){
+                    for(String x: note){
                         outVersoClient.writeBytes(x + ", ");
                     }
                     outVersoClient.writeBytes(" " + '\n');
@@ -58,13 +58,13 @@ public class Server {
                     client.close();
                     server.close(); //Chiusura Server perché non serve la connessione di nessun altro Client
                 break;
-                case "RIMUOVI":
+                /*case "RIMUOVI":
                     for(String x: copiaNote){
                         if(x.equals(controllo[1])){
                             note.remove(x);
                         }
                     }
-                break;
+                break;*/
                 default:
                     note.add(stringaInDalClient);
                     outVersoClient.writeBytes("Nota Salvata!\n");
